@@ -5,46 +5,45 @@
 #                                                     +:+ +:+         +:+      #
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/09/25 22:17:46 by radandri         ###   ########.fr        #
+#    Created: 2025/08/11 18:42:51 by radandri          #+#    #+#              #
+#    Updated: 2025/09/16 11:19:45 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME =push_swap
 CC = cc
-INC_DIR = includes
-CFLAGS = -Wall -Wextra -Werror -g -I $(INC_DIR)
-VALGRIND_ARGS = --leak-check=full --show-leak-kinds=all --track-origins=yes -s
-
-LIBFT_PRINTF_DIR = libft_printf
-LIBFT_PRINTF = $(LIBFT_PRINTF_DIR)/libftprintf.a
-
-SRCS = main.c
+CFLAGS = -Wall -Wextra -Werror
+NAME = libftprintf.a
+LIBFT_DIR = ./libft
+LIBFT = $(LIBFT_DIR)/libft.a
+# TEST = test
+SRCS = ft_printf.c \
+       ft_utils_az.c \
+       ft_utils_numbers.c \
+	   ft_utils_hexa.c \
 
 OBJS = $(SRCS:.c=.o)
 
-all: $(LIBFT_PRINTF) $(NAME)
+all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT_PRINTF)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBFT_PRINTF) -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT)
+	cp $(LIBFT) $(NAME)
+	ar rcs $(NAME) $(OBJS)
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+$(LIBFT):
+	$(MAKE) -C $(LIBFT_DIR)
 
-$(LIBFT_PRINTF):
-	$(MAKE) -C $(LIBFT_PRINTF_DIR)
+# compile the test program
+# $(TEST): $(OBJS) main.o
+# 	$(CC) $(CFLAGS) -o $(TEST) main.o $(NAME) $(LIBFT)
 
 clean:
 	rm -f $(OBJS)
-	$(MAKE) -C $(LIBFT_PRINTF_DIR) clean
-
+	make -C $(LIBFT_DIR) clean
+	
 fclean: clean
 	rm -f $(NAME)
-	$(MAKE) -C $(LIBFT_PRINTF_DIR) fclean
-
-valgrind: $(NAME)
-	valgrind $(VALGRIND_ARGS) ./$(NAME)
+	make -C $(LIBFT_DIR) fclean
 
 re: fclean all
 
-.PHONY: all fclean clean re valgrind
+.PHONY: all clean fclean re

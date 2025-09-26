@@ -1,0 +1,7 @@
+main.c
+a.out
+libftprintf.a
+libft/*.o
+libft/libft.a
+*.o
+*.a
