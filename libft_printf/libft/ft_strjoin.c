@@ -6,12 +6,28 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 17:44:24 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/17 18:22:17 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/27 04:44:14 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Concatenates two strings into a newly allocated string.
+ *
+ * Allocates (with malloc) and returns a new string, which is the
+ * result of the concatenation of 's1' and 's2'.
+ *
+ * @param s1 The prefix string.
+ * @param s2 The suffix string.
+ * @return A pointer to the new string containing the concatenation
+ *         of 's1' and 's2', or NULL if allocation fails.
+ *
+ * @example
+ * char *joined = ft_strjoin("foo", "bar");
+ * // joined now points to "foobar"
+ * free(joined);
+ */
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*result;

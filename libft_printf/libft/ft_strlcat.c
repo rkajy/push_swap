@@ -6,12 +6,25 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/07 22:21:07 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/20 15:12:59 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/27 04:44:14 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * @brief Appends src to dst, ensuring NUL-termination and no overflow.
+ *
+ * @param dst      Destination buffer.
+ * @param src      Source string to append.
+ * @param dstsize  Total size of destination buffer.
+ * @return         Total length of string tried to create (dst + src).
+ *
+ * Example:
+ * char buf[10] = "foo";
+ * ft_strlcat(buf, "bar", sizeof(buf));
+ * // buf now contains "foobar"
+ */
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize)
 {
 	size_t	src_len;

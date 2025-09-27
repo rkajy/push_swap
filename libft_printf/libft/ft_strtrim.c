@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:50:37 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/19 19:57:58 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/27 20:29:13 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,20 @@ static int	is_to_strim(char c, const char *set)
 	return (0);
 }
 
+/**
+ * @brief Trims characters in 'set' from the start and end of 's1'.
+ *
+ * Allocates and returns a copy of 's1' with the characters in 'set'
+ * removed from the beginning and end. Returns NULL if 's1' or 'set'
+ * is NULL or if allocation fails.
+ *
+ * Example:
+ *   ft_strtrim("  hello  ", " ") returns "hello"
+ *
+ * @param s1 The string to trim.
+ * @param set The set of characters to trim.
+ * @return A new trimmed string, or NULL on error.
+ */
 char	*ft_strtrim(const char *s1, const char *set)
 {
 	size_t	i_first;
