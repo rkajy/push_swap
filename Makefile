@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/09/25 22:17:46 by radandri         ###   ########.fr        #
+#    Updated: 2025/09/28 05:31:34 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,10 @@ VALGRIND_ARGS = --leak-check=full --show-leak-kinds=all --track-origins=yes -s
 LIBFT_PRINTF_DIR = libft_printf
 LIBFT_PRINTF = $(LIBFT_PRINTF_DIR)/libftprintf.a
 
-SRCS = main.c
+SRCS = push_swap_list.c \
+		push_swap_parsing.c \
+		push_swap_utils.c \
+		push_swap_main.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -6,26 +6,69 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/26 10:56:21 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/28 05:35:34 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft_printf/ft_printf.h"
+# include "libft_printf/ft_printf.h"
+# include <limits.h>
 
+/**
+ * @struct s_node
+ * @brief Represents a node in a doubly linked stack used in push_swap.
+ *
+ * Each node stores the original integer value, its compressed index
+ * (rank in sorted order), and additional attributes to compute the
+ * optimal moves between two stacks (stack A and B).
+ *
+ * Example usage:
+ * @code
+ * t_node *n = malloc(sizeof(t_node));
+ * n->data = 42;        // raw value
+ * n->index = 3;        // 4th smallest element
+ * n->pos = 0;          // top of the stack
+ * n->target_pos = 2;   // must be placed at position 2 in stack A
+ * n->cost_a = 1;       // one rotation needed on stack A
+ * n->cost_b = -2;      // two reverse rotations on stack B
+ * @endcode
+ */
 typedef struct s_dlklist
 {
-	int			data;
-	struct s_dlklist	*next;
-	struct s_dlklist	*prev;
-	int	index;
-}					t_node;
+	int data;               /**< Raw integer value stored in node */
+	int index;              /**< Compressed index (rank in sorted order) */
+	int pos;                /**< Current position in the stack */
+	int target_pos;         /**< Target position in the other stack */
+	int cost_a;             /**< Rotation cost on stack A */
+	int cost_b;             /**< Rotation cost on stack B */
+	struct s_dlklist *next; /**< Pointer to the next node */
+	struct s_dlklist *prev; /**< Pointer to the previous node */
+}			t_node;
 
-typedef struct s_doubly_linked_list{
-    t_node *sentinel;
-    int size;
-} t_stack;
+typedef struct s_doubly_linked_list
+{
+	t_node	*sentinel;
+	int		size;
+}			t_stack;
 
+// linked list
+void		printList(t_stack *s);
+void		initList(t_stack *s);
+void		updateIndexes(t_stack *s);
+t_node		*insertInTail_checked(t_stack *s, int data);
+t_node		*insertInHead(t_stack *stack, int data);
+
+// parsing
+int			is_valid_token(char *s);
+int			has_duplicates(long *arr, int size);
+t_stack		*parse_numbers_to_stack(char *str);
+char		*ft_join_args(int argc, char *argv[]);
+char		*ft_string_sanitize(char *args);
+
+// utils
+int	is_space(char c);
+long		ft_atol(const char *str);
+void	free_split(char **split);
 #endif

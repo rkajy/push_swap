@@ -6,12 +6,22 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/18 16:10:22 by radandri          #+#    #+#             */
-/*   Updated: 2025/07/21 00:22:09 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/28 05:33:54 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
+/**
+ * Compte le nombre de mots dans `s` séparés par le délimiteur `c`.
+ *
+ * @param s Chaîne à analyser.
+ * @param c Délimiteur.
+ * @return Nombre de mots.
+ *
+ * Exemple :
+ * word_count("a b c", ' ') retourne 3
+ */
 static int	word_count(const char *s, char c)
 {
 	int	i;
@@ -67,6 +77,16 @@ static int	freee(char **res, char *word, int j)
 	return (0);
 }
 
+/**
+ * Splits the input string 's' into an array of strings using delimiter char 'c'
+ *
+ *
+ * Découpe 's' en mots séparés par 'c'. Retourne un tableau terminé par NULL.
+ *
+ * Exemple :
+ * char **tab = ft_split("a,b,c", ',');
+ * // tab[0]="a", tab[1]="b", tab[2]="c", tab[3]=NULL
+ */
 char	**ft_split(char const *s, char c)
 {
 	char	**res;
