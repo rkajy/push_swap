@@ -10,3 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+void swap_b(t_stack *stack_b)
+{
+    swapFirst2(stack_b);
+    write(1, "sb\n", 3);
+}
+
+void push_b(t_stack *stack_b)
+{
+    (void)stack_b;
+    write(1, "pb\n", 3);
+}
+
+void rotate_b(t_stack *stack_b)
+{
+    (void)stack_b;
+    write(1, "rb\n", 3);
+}

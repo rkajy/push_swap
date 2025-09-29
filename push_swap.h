@@ -71,4 +71,30 @@ char		*ft_string_sanitize(char *args);
 int	is_space(char c);
 long		ft_atol(const char *str);
 void	free_split(char **split);
+void swapFirst2(t_stack *stack);
+
+// move a
+void swap_a(t_stack *stack_a);
+
+void push_a(t_stack *stack_a);
+
+void rotate_a(t_stack *stack_a);
+
+void reverse_rotate_a(t_stack *stack_a);
+
+// move b
+void swap_b(t_stack *stack_b);
+
+void push_b(t_stack *stack_b);
+
+void rotate_b(t_stack *stack_b);
+
+// move a et b
+void reverse_rotate_b(t_stack *stack_b);
+
+void    swap_both_a_b(t_stack *stack_a, t_stack *stack_b);
+
+void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b);
+
+void reverse_rotate_both_a_b(t_stack *stack_a, t_stack *stack_b);
 #endif

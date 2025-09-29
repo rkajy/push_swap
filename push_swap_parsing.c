@@ -34,11 +34,20 @@ int	is_valid_token(char *s)
 {
 	int	i;
 
+	if (!s || !s[0])
+		return (0);
 	i = 0;
 	if (s[i] == '+' || s[i] == '-')
+	{
+		/* sign alone is invalid */
+		if (!s[i + 1])
+			return (0);
 		i++;
-	if (!s[i])
+	}
+	/* reject leading zero followed by other digits (ex: "03", "000") */
+	if (s[i] == '0' && s[i + 1])
 		return (0);
+	/* all remaining chars must be digits */
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
