@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 10:33:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/30 05:04:00 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/30 07:21:29 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,35 +111,44 @@ t_node* insertInHead(t_stack *stack, int data)
     return newNode;
 }
 
-// TODO: a continuer
-// static void swapNodes(t_node *n1, t_node *n2)
-// {
-//     if(!n1 || !n2 || n1->next != n2)
-//         return;
-//     t_node *next;
-//     t_node *prev;
+/**
+ * Swap two adjacent nodes n1 and n2 in a doubly linked list.
+ * Precondition: n1->next == n2
+ */
+static void swap_adjacent_nodes(t_node *n1, t_node *n2)
+{
+    if(!n1 || !n2 || n1->next != n2)
+        return;
+    t_node *next;
+    t_node *prev;
 
-//     prev = n1->prev;
-//     next = n2->next;
-    
-//     prev->next = n2;
-//     n2->prev = prev;
+    prev = n1->prev;
+    next = n2->next;
 
-//     n2->next = n1;
+    n2->next = n1;
+    n2->prev = prev;
 
-// }
+    n1->prev = n2;
+    n1->next = next;
 
-// void swapFirst2(t_stack *stack)
-// {
-//     t_node *firstNode;
-//     t_node *secondNode;
+    prev->next = n2;
+    next->prev = n1;
 
-//     if(stack->size == 0 || stack->size == 1)
-//         break;
-//     firstNode = stack->sentinel->next;
-//     secondNode = stack->sentinel->next->next;
-//     swapNodes(firstNode, secondNode);
-// }
+    n1->pos++;
+    n1->pos--;
+}
+
+void swapFirst2(t_stack *stack)
+{
+    t_node *firstNode;
+    t_node *secondNode;
+
+    if(stack->size == 0 || stack->size == 1)
+        return;
+    firstNode = stack->sentinel->next;
+    secondNode = stack->sentinel->next->next;
+    swap_adjacent_nodes(firstNode, secondNode);
+}
 
 // void deleteLast(t_stack* s){
 //     if(s->size == 0)

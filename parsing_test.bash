@@ -2,6 +2,8 @@
 # push_swap_test_full.sh
 # Test push_swap parsing with quotes, spaces, tabs, etc.
 
+make fclean > /dev/null
+make > /dev/null
 
 BINARY="./push_swap"
 
@@ -65,3 +67,5 @@ for i in "${!tests[@]}"; do
   fi
   echo
 done
+
+make fclean > /dev/null

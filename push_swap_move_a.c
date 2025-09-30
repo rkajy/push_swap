@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:39:35 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/30 04:58:35 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/30 07:17:39 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void swap_a(t_stack *stack_a)
 {
     (void) stack_a;
-    // swapFirst2(stack_a);
+    swapFirst2(stack_a);
     write(1, "sa\n", 3);
 }
 
