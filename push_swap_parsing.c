@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:27 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/28 05:53:30 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/30 05:38:12 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,33 +71,55 @@ static char	*append_with_space(char *s1, char *s2)
 	return (out);
 }
 
-char	*ft_string_sanitize(char *args)
+static char	*ft_replace_spaces(char *args)
 {
 	int		i;
 	int		j;
-	char	*output;
+	char	*tmp;
 
-	i = -1;
-	while (args[++i])
-	{
-		if (is_space(args[i]))
-		{
-			args[i] = ' ';
-			if (args[i + 1] && is_space(args[i + 1]))
-				args[i + 1] = 127;
-		}
-	}
-	output = malloc(sizeof(char) * (i + 1));
-	if (!output)
+	tmp = malloc(sizeof(char) * (ft_strlen(args) + 1));
+	if (!tmp)
 		return (NULL);
 	i = -1;
 	j = 0;
 	while (args[++i])
 	{
-		if (args[i] != 127)
-			output[j++] = args[i];
+		if (args[i] == '\t')
+			tmp[j++] = ' ';
+		else if (args[i] == '\\' && args[i + 1] == 't')
+		{
+			tmp[j++] = ' ';
+			i++;
+		}
+		else if (is_space(args[i]))
+			tmp[j++] = ' ';
+		else
+			tmp[j++] = args[i];
 	}
-	return (output[j] = '\0', output);
+	tmp[j] = '\0';
+	return (tmp);
+}
+
+char	*ft_string_sanitize(char *args)
+{
+	int		i;
+	int		j;
+	char	*tmp;
+
+	tmp = ft_replace_spaces(args);
+	if (!tmp)
+		return (NULL);
+	i = 0;
+	j = 0;
+	while (tmp[i])
+	{
+		if (tmp[i] == ' ' && j > 0 && tmp[j - 1] == ' ')
+			i++;
+		else
+			tmp[j++] = tmp[i++];
+	}
+	tmp[j] = '\0';
+	return (tmp);
 }
 
 /**

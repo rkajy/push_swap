@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 10:33:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/28 06:14:34 by radandri         ###   ########.fr       */
+/*   Updated: 2025/09/30 05:04:00 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,34 +112,34 @@ t_node* insertInHead(t_stack *stack, int data)
 }
 
 // TODO: a continuer
-static void swapNodes(t_node *n1, t_node *n2)
-{
-    if(!n1 || !n2 || n1->next != n2)
-        return;
-    t_node *next;
-    t_node *prev;
+// static void swapNodes(t_node *n1, t_node *n2)
+// {
+//     if(!n1 || !n2 || n1->next != n2)
+//         return;
+//     t_node *next;
+//     t_node *prev;
 
-    prev = n1->prev;
-    next = n2->next;
+//     prev = n1->prev;
+//     next = n2->next;
     
-    prev->next = n2;
-    n2->prev = prev;
+//     prev->next = n2;
+//     n2->prev = prev;
 
-    n2->next = n1;
+//     n2->next = n1;
 
-}
+// }
 
-void swapFirst2(t_stack *stack)
-{
-    t_node *firstNode;
-    t_node *secondNode;
+// void swapFirst2(t_stack *stack)
+// {
+//     t_node *firstNode;
+//     t_node *secondNode;
 
-    if(stack->size == 0 || stack->size == 1)
-        break;
-    firstNode = stack->sentinel->next;
-    secondNode = stack->sentinel->next->next;
-    swapNodes(firstNode, secondNode);
-}
+//     if(stack->size == 0 || stack->size == 1)
+//         break;
+//     firstNode = stack->sentinel->next;
+//     secondNode = stack->sentinel->next->next;
+//     swapNodes(firstNode, secondNode);
+// }
 
 // void deleteLast(t_stack* s){
 //     if(s->size == 0)
