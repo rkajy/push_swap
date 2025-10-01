@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:27 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/30 05:44:36 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/02 01:09:03 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,6 @@ t_stack	*parse_numbers_to_stack(char *str)
 		if (!is_valid_token(split[i]))
 			return (free_split(split), free(list), NULL);
 		num = ft_atol(split[i]);
-//        ft_printf("INT_MAX = %ld and INT_MIN = %d\n", INT_MAX, INT_MIN);
 		if (num > INT_MAX || num < INT_MIN)
 			return (free_split(split), free(list), NULL);
 		if (!insertInTail_checked(list, (int)num))

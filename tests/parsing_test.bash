@@ -2,10 +2,11 @@
 # push_swap_test_full.sh
 # Test push_swap parsing with quotes, spaces, tabs, etc.
 
-make fclean > /dev/null
-make > /dev/null
+make -C .. fclean > /dev/null
+make -C .. > /dev/null
 
-BINARY="./push_swap"
+cc -Wall -Werror -Wextra ../push_swap_parsing.o ../push_swap_list.o ../push_swap_utils.o ../libft_printf/libftprintf.a parsing_test.c -o parsing_test
+BINARY="./parsing_test"
 
 # Test cases: argv style (quotes included for single string inputs)
 declare -a tests=(
@@ -68,4 +69,4 @@ for i in "${!tests[@]}"; do
   echo
 done
 
-make fclean > /dev/null
+make -C .. fclean > /dev/null

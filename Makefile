@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/09/28 05:31:34 by radandri         ###   ########.fr        #
+#    Updated: 2025/09/30 07:32:50 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,9 @@ fclean: clean
 
 valgrind: $(NAME)
 	valgrind $(VALGRIND_ARGS) ./$(NAME)
+
+viz:
+	echo "wip"
 
 re: fclean all
 

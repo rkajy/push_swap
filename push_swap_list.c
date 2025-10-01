@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 10:33:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/30 07:21:29 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/01 23:29:37 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,20 @@ t_node* insertInTail_checked(t_stack *s, int data)
     return (insertInTail(s, data));
 }
 
+void insertNodeInTail(t_stack *s, t_node *node)
+{
+    if(!node)
+    {    return;}
+        t_node *last = s->sentinel->prev;
+        
+        last->next = node;
+        node->prev = last;
+        node->next = s->sentinel;
+        s->sentinel->prev = node;
+        s->size++;
+        updateIndexes(s);
+}
+
 t_node* insertInHead(t_stack *stack, int data)
 {
     t_node *newNode = (t_node*) malloc(sizeof(t_node));
@@ -109,6 +123,20 @@ t_node* insertInHead(t_stack *stack, int data)
     stack->size++;
     updateIndexes(stack);
     return newNode;
+}
+
+void insertNodeInHead(t_stack *stack, t_node *node)
+{
+    if(!node)
+        return;
+    t_node *oldHead = stack->sentinel->next;
+
+    stack->sentinel->next = node;
+    node->prev = stack->sentinel;
+    node->next = oldHead;
+    oldHead->prev = node;
+    stack->size++;
+    updateIndexes(stack);
 }
 
 /**
@@ -148,6 +176,22 @@ void swapFirst2(t_stack *stack)
     firstNode = stack->sentinel->next;
     secondNode = stack->sentinel->next->next;
     swap_adjacent_nodes(firstNode, secondNode);
+}
+
+t_node *deleteFirst(t_stack *s)
+{
+    if(s->size == 0)
+        return (NULL);
+    
+    t_node *first = s->sentinel->next;
+    t_node *second = first->next;
+    s->sentinel->next = second;
+    second->prev = s->sentinel;
+    s->size--;
+    first->next = NULL;
+    first->prev = NULL;
+    updateIndexes(s);
+    return (first);
 }
 
 // void deleteLast(t_stack* s){

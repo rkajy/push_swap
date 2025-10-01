@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/28 05:35:34 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/01 22:31:44 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ void		initList(t_stack *s);
 void		updateIndexes(t_stack *s);
 t_node		*insertInTail_checked(t_stack *s, int data);
 t_node		*insertInHead(t_stack *stack, int data);
+t_node		*deleteFirst(t_stack *s);
+void		insertNodeInHead(t_stack *stack, t_node *node);
+void		insertNodeInTail(t_stack *s, t_node *node);
 
 // parsing
 int			is_valid_token(char *s);
@@ -68,33 +71,33 @@ char		*ft_join_args(int argc, char *argv[]);
 char		*ft_string_sanitize(char *args);
 
 // utils
-int	is_space(char c);
+int			is_space(char c);
 long		ft_atol(const char *str);
-void	free_split(char **split);
-void swapFirst2(t_stack *stack);
+void		free_split(char **split);
+void		swapFirst2(t_stack *stack);
 
 // move a
-void swap_a(t_stack *stack_a);
+void		swap_a(t_stack *stack_a);
 
-void push_a(t_stack *stack_a);
+void		push_a(t_stack *stack_a, t_stack *stack_b);
 
-void rotate_a(t_stack *stack_a);
+void		rotate_a(t_stack *stack_a);
 
-void reverse_rotate_a(t_stack *stack_a);
+void		reverse_rotate_a(t_stack *stack_a);
 
 // move b
-void swap_b(t_stack *stack_b);
+void		swap_b(t_stack *stack_b);
 
-void push_b(t_stack *stack_b);
+void		push_b(t_stack *stack_a, t_stack *stack_b);
 
-void rotate_b(t_stack *stack_b);
+void		rotate_b(t_stack *stack_b);
 
 // move a et b
-void reverse_rotate_b(t_stack *stack_b);
+void		reverse_rotate_b(t_stack *stack_b);
 
-void    swap_both_a_b(t_stack *stack_a, t_stack *stack_b);
+void		swap_both_a_b(t_stack *stack_a, t_stack *stack_b);
 
-void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b);
+void		rotate_both_a_b(t_stack *stack_a, t_stack *stack_b);
 
-void reverse_rotate_both_a_b(t_stack *stack_a, t_stack *stack_b);
+void		reverse_rotate_both_a_b(t_stack *stack_a, t_stack *stack_b);
 #endif
