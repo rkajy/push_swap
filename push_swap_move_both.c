@@ -6,14 +6,14 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:56:11 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/02 01:09:11 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/03 03:58:29 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /**
- * @brief Reverse rotates stack B.
+ * @brief rrb - reverse rotate stack B (last becomes first).
  *
  * Moves last element of stack B to top,
  * shifts all other elements down by one.
@@ -22,9 +22,9 @@
  * Example:
  * Before:        After:
  * A: []          A: []
- * B: [7, 9, 5]   B: [5, 7, 9]
+ * B: [9, 7, 5]   B: [5, 9, 7]
  *
- * @param stack_b Pointer to stack B to reverse rotate.
+ * @param stack_b Pointer to stack B.
  */
 void reverse_rotate_b(t_stack *stack_b)
 {
@@ -32,6 +32,17 @@ void reverse_rotate_b(t_stack *stack_b)
     write(1, "rrb\n", 4);
 }
 
+/**
+ * @brief ss - sa and sb at the same time.
+ *
+ * Example:
+ * Before:        After:
+ * A: [3,2,1]     A: [2,3,1]
+ * B: [9,7,5]     B: [7,9,5]
+ *
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
+ */
 void    swap_both_a_b(t_stack *stack_a, t_stack *stack_b)
 {
     swapFirst2(stack_a);
@@ -40,18 +51,15 @@ void    swap_both_a_b(t_stack *stack_a, t_stack *stack_b)
 }
 
 /**
- * @brief Rotates both stack_a and stack_b upwards by one position.
- *
- * This function performs a simultaneous rotation on both stacks,
- * moving the top element of each stack to the bottom.
+ * @brief rr - ra and rb at the same time.
  *
  * Example:
  * Before:        After:
- * A: [3, 2, 1]   A: [2, 1, 3]
- * B: [7, 9, 5]   B: [9, 5, 7]
+ * A: [3,2,1]     A: [2,1,3]
+ * B: [9,7,5]     B: [7,5,9]
  *
- * @param stack_a Pointer to the first stack (stack_a) to be rotated.
- * @param stack_b Pointer to the second stack (stack_b) to be rotated.
+ * @param stack_a Pointer to stack A.
+ * @param stack_b Pointer to stack B.
  */
 void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b)
 {
@@ -61,7 +69,7 @@ void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b)
 }
 
 /**
- * @brief Performs a reverse rotation on both stack_a and stack_b.
+ * @brief rrr - rra and rrb at the same time.
  *
  * This function moves the last element of each stack to the top,
  * effectively rotating both stacks in reverse simultaneously.
@@ -69,7 +77,7 @@ void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b)
  * Example:
  * Before:        After:
  * A: [3, 2, 1]   A: [1, 3, 2]
- * B: [7, 9, 5]   B: [5, 7, 9]
+ * B: [9, 7, 5]   B: [5, 9, 7]
  *
  * @param stack_a Pointer to the first stack (t_stack).
  * @param stack_b Pointer to the second stack (t_stack).
