@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 10:33:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/01 23:29:37 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/03 22:05:42 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,18 +194,20 @@ t_node *deleteFirst(t_stack *s)
     return (first);
 }
 
-// void deleteLast(t_stack* s){
-//     if(s->size == 0)
-//         return ;
-//     t_node* lastNode = s->sentinel->prev;
-//     lastNode->prev->next = s->sentinel;
-//     s->sentinel->prev = lastNode->prev;
-//     lastNode->prev = NULL;
-//     lastNode->next = NULL;
-//     free(lastNode);
-//     s->size--;
-//     updateIndexes(s);
-// }
+t_node *deleteLast(t_stack* s){
+    if(s->size == 0)
+        return (NULL);
+    t_node* lastNode = s->sentinel->prev;
+    t_node* prevLastNode = lastNode->prev;
+
+    prevLastNode->next = s->sentinel;
+    s->sentinel->prev = prevLastNode;
+    lastNode->prev = NULL;
+    lastNode->next = NULL;
+    s->size--;
+    updateIndexes(s);
+    return (lastNode);
+}
 
 
 

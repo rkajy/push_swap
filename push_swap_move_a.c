@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:39:35 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/03 03:53:44 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/03 22:09:07 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,10 @@ void rotate_a(t_stack *stack_a)
  */
 void reverse_rotate_a(t_stack *stack_a)
 {
-    (void)stack_a;
+    if(stack_a->size < 2)
+        return;
+    t_node* last = deleteLast(stack_a);
+    insertNodeInHead(stack_a, last);
+    
     write(1, "rra\n", 4);
 }

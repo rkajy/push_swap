@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/01 22:56:11 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/03 03:58:29 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/04 00:41:34 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@
  */
 void reverse_rotate_b(t_stack *stack_b)
 {
-    (void)stack_b;
+    if(stack_b->size < 2)
+        return;
+    t_node* last = deleteLast(stack_b);
+    insertNodeInHead(stack_b, last);
     write(1, "rrb\n", 4);
 }
 
@@ -63,8 +66,18 @@ void    swap_both_a_b(t_stack *stack_a, t_stack *stack_b)
  */
 void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b)
 {
-    (void)stack_a;
-    (void)stack_b;
+    t_node *head_a;
+    t_node *head_b;
+
+    if(stack_a->size < 2 || stack_b->size <2)
+        return;
+        
+    head_a = deleteFirst(stack_a);
+    insertNodeInTail(stack_a, head_a);
+
+    head_b = deleteFirst(stack_b);
+    insertNodeInTail(stack_b, head_b);
+
     write(1, "rr\n", 3);
 }
 
@@ -84,7 +97,14 @@ void rotate_both_a_b(t_stack *stack_a, t_stack *stack_b)
  */
 void reverse_rotate_both_a_b(t_stack *stack_a, t_stack *stack_b)
 {
-    (void)stack_a;
-    (void)stack_b;
+    t_node* last_a;
+    t_node* last_b;
+
+    if(stack_a->size < 2 || stack_b->size < 2)
+        return;
+    last_a = deleteLast(stack_a);
+    insertNodeInHead(stack_a, last_a);
+    last_b = deleteLast(stack_b);
+    insertNodeInHead(stack_b, last_b);
     write(1, "rrr\n", 4);
 }

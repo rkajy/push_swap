@@ -10,6 +10,10 @@ BINARY="./parsing_test"
 
 # Test cases: argv style (quotes included for single string inputs)
 declare -a tests=(
+  "1 a 2" # non numerique
+  "1 2 2" # Duplicates
+  "2147483648" #overflow INT MAX
+  "-2147483649" #overflow INT MIN
   "1 2 3"
   "\"1 2 3\""
   "\"  1   2 3  \""
@@ -30,9 +34,25 @@ declare -a tests=(
   " "
   "0"
   "000"
+  "\t"
+  "0 2147483647 -2147483648"
+  "+1 -2 3"
+  "--3"
+  "++5"
+  "-1 -2 -3"
+  "a"
+  "1 2 3b"
+  "3 03"
+  "54867543867438 3"
+  "-2147483647765 4 5"
+  "000"
 )
 
 declare -a expected=(
+  "Error"
+  "Error"
+  "Error"
+  "Error"
   "[1,2,3]"
   "[1,2,3]"
   "[1,2,3]"
@@ -49,9 +69,21 @@ declare -a expected=(
   "Error"
   "[1,2,3]"
   "[1,2,3]"
-  "Error"
-  "Error"
+  "" #21
+  "" #22
   "[0]"
+  "Error"
+  "" #25 
+  "[0,2147483647,-2147483648]"
+  "[1,-2,3]"
+  "Error"
+  "Error"
+  "[-1,-2,-3]"
+  "Error"
+  "Error"
+  "Error"
+  "Error"
+  "Error"
   "Error"
 )
 
@@ -70,3 +102,4 @@ for i in "${!tests[@]}"; do
 done
 
 make -C .. fclean > /dev/null
+rm -rf $BINARY

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:38:10 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/01 23:28:36 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/04 01:58:53 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@ int main(int argc, char* argv[])
 {
     char *args;
     t_stack *a;
+
+    if(argc == 1)
+        return 0;
 
     args= ft_join_args(argc, argv);
     if (!args)

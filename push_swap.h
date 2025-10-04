@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/01 22:31:44 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/03 22:06:57 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void		updateIndexes(t_stack *s);
 t_node		*insertInTail_checked(t_stack *s, int data);
 t_node		*insertInHead(t_stack *stack, int data);
 t_node		*deleteFirst(t_stack *s);
+t_node *deleteLast(t_stack* s);
 void		insertNodeInHead(t_stack *stack, t_node *node);
 void		insertNodeInTail(t_stack *s, t_node *node);
 
