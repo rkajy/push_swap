@@ -1,3 +1,4 @@
+// TODO : NOT COMPLETED
 #include "../push_swap.h"
 
 int main(int argc, char* argv[])
@@ -5,6 +6,7 @@ int main(int argc, char* argv[])
     char *args;
     t_stack *stack_a;
 
+    stack_a = NULL;
     if(argc == 1)
         return 0;
 
@@ -22,12 +24,7 @@ int main(int argc, char* argv[])
         return (1);        
     }
 
-    //if(stack_a->size < 2)
-    //    return (0);
-    if(stack_a->size >= 2){    
-    t_node *head_a = deleteFirst(stack_a);
-    insertNodeInTail(stack_a, head_a);
-    }
+    swapFirst2(stack_a);
     printList(stack_a);
     return (0);
 }

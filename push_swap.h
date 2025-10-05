@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/03 22:06:57 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/05 21:03:04 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,15 @@ typedef struct s_doubly_linked_list
 {
 	t_node	*sentinel;
 	int		size;
+	t_node	*min;
+	t_node	*max;
+	t_node	*median;
 }			t_stack;
 
 // linked list
 void		printList(t_stack *s);
 void		initList(t_stack *s);
+t_stack	*create_stack(void);
 void		updateIndexes(t_stack *s);
 t_node		*insertInTail_checked(t_stack *s, int data);
 t_node		*insertInHead(t_stack *stack, int data);

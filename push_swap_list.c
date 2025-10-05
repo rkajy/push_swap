@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 10:33:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/03 22:05:42 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/05 21:02:43 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,27 +37,77 @@ void initList(t_stack *s)
 {
     s->sentinel = malloc(sizeof(t_node));
     if(!s->sentinel)
-    {
-        if(!s)
-            free(s);
         return;
-    }
+    
     s->sentinel->data = -1;
     s->sentinel->index = -1;
     s->sentinel->next = s->sentinel;
     s->sentinel->prev = s->sentinel;
     s->size = 0;
+    s->max = NULL;
+    s->min = NULL;
+    s->median = NULL;
 }
 
+t_stack	*create_stack(void)
+{
+	t_stack	*s;
+
+	s = malloc(sizeof(t_stack));
+	if (!s)
+		return (NULL);
+	s->sentinel = malloc(sizeof(t_node));
+	if (!s->sentinel)
+	{
+		free(s);
+		return (NULL);
+	}
+	s->sentinel->data = 0;
+	s->sentinel->index = -1;
+	s->sentinel->next = s->sentinel;
+	s->sentinel->prev = s->sentinel;
+	s->size = 0;
+	s->min = NULL;
+	s->max = NULL;
+	s->median = NULL;
+	return (s);
+}
+
+t_node *find_median_node(t_stack *stack)
+{
+    t_node *cur;
+    int target_index = stack->size / 2;
+
+    if(!stack || stack->size == 0)
+        return (NULL);
+
+    cur = stack->sentinel->next;
+    while (target_index-- && cur != stack->sentinel)
+        cur = cur->next;
+    return (cur);
+}
 void    updateIndexes(t_stack *s)
 {
-    int i =0;
-    t_node *cur = s->sentinel->next;
+    int i;
+    t_node *cur;
+    
+    if(!s || !s->sentinel || s->size ==0)
+        return;
+    cur = s->sentinel->next;
+    s->min = cur;
+    s->max = cur;
+
+    i = 0;
     while (cur != s->sentinel)
     {
         cur->index = i++;
+        if(cur->data < s->min->data)
+            s->min = cur;
+        if(cur->data > s->max->data)
+            s->max = cur;
         cur = cur->next;
     }
+    s->median = find_median_node(s);
 }
 
 int search(t_stack* s, int x)
@@ -137,6 +187,25 @@ void insertNodeInHead(t_stack *stack, t_node *node)
     oldHead->prev = node;
     stack->size++;
     updateIndexes(stack);
+}
+
+int is_sorted_stack(t_stack *stack)
+{
+    t_node *curr;
+
+    if(!stack || !stack->sentinel)
+        return (0);
+    if(stack->size <= 1)
+        return (1);
+    
+    curr = stack->sentinel->next;
+    while (curr != stack->sentinel)
+    {
+        if(curr->data > curr->next->data)
+            return (0);
+        curr = curr->next;
+    }
+    return (1);
 }
 
 /**

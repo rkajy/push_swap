@@ -9,9 +9,9 @@ make -C .. > /dev/null
 cc -Wall -Werror -Wextra \
   ../push_swap_list.o ../push_swap_utils.o ../push_swap_move_a.o \
   ../push_swap_parsing.o ../libft_printf/libftprintf.a \
-  test_ra.c -o test_ra
+  test_rotate.c -o test_rotate
 
-BINARY="./test_ra"
+BINARY="./test_rotate"
 
 # Define test cases
 declare -a tests=(
@@ -32,7 +32,7 @@ declare -a expected=(
   "[2,3,4,5,1]"
 )
 
-echo "Running ra tests..."
+echo "Running rotate tests..."
 for i in "${!tests[@]}"; do
   echo "Test $((i+1)): ${tests[$i]}"
   output=$($BINARY ${tests[$i]})

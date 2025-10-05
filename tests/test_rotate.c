@@ -3,8 +3,9 @@
 int main(int argc, char* argv[])
 {
     char *args;
-    t_stack *a;
-    a = NULL;
+    t_stack *stack_a;
+
+    stack_a = NULL;
     if(argc == 1)
         return 0;
 
@@ -15,12 +16,17 @@ int main(int argc, char* argv[])
         return (1);
     }
     
-    a = parse_numbers_to_stack(args);
-    if(!a)
+    stack_a = parse_numbers_to_stack(args);
+    if(!stack_a)
     {
         ft_printf("Error\n");
         return (1);        
     }
-    printList(a);
+
+    if(stack_a->size >= 2){    
+    t_node *head_a = deleteFirst(stack_a);
+    insertNodeInTail(stack_a, head_a);
+    }
+    printList(stack_a);
     return (0);
 }
