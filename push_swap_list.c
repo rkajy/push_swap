@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/26 10:33:02 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/05 21:02:43 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/07 22:59:37 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void    updateIndexes(t_stack *s)
     s->median = find_median_node(s);
 }
 
-int search(t_stack* s, int x)
+int searchIndex(t_stack* s, int x)
 {
     t_node *current;
 
@@ -122,6 +122,20 @@ int search(t_stack* s, int x)
         current = current->next;
     }
     return (-1);
+}
+
+t_node *searchNode(t_stack* s, int x)
+{
+    t_node *current;
+
+    current = s->sentinel->next;
+    while (current != s->sentinel)
+    {
+        if(current->data == x)
+            return current;
+        current = current->next;
+    }
+    return (NULL);
 }
 
 t_node* insertInTail(t_stack *s, int data)
@@ -141,7 +155,7 @@ t_node* insertInTail(t_stack *s, int data)
 
 t_node* insertInTail_checked(t_stack *s, int data)
 {
-    if(search(s, data) != -1)
+    if(searchIndex(s, data) != -1)
         return (NULL);
     return (insertInTail(s, data));
 }
@@ -189,7 +203,7 @@ void insertNodeInHead(t_stack *stack, t_node *node)
     updateIndexes(stack);
 }
 
-int is_sorted_stack(t_stack *stack)
+int isSortedStack(t_stack *stack)
 {
     t_node *curr;
 
@@ -278,7 +292,16 @@ t_node *deleteLast(t_stack* s){
     return (lastNode);
 }
 
+void deleteNode(t_stack *s, t_node* node)
+{
+    if(!s || !s->sentinel || !node || node == s->sentinel)
+        return;
 
+    node->prev->next = node->next;
+    node->next->prev = node->prev;
+    free(node);
+    s->size--;
+}
 
 // int main(int argc, char *argv[])
 // {

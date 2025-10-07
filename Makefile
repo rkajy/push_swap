@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/09/30 07:32:50 by radandri         ###   ########.fr        #
+#    Updated: 2025/10/07 17:34:00 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,19 +57,19 @@ viz:
 test100: $(NAME)
 	@ARG=$$(seq -500 500 | shuf | head -n 100); \
 	echo "Testing with:" $$ARG; \
-	./$(NAME) $$ARG > moves.txt; \
+	./$(NAME) $$ARG | tee moves.txt; \
 	echo "Moves saved to moves.txt"
 
 test500: $(NAME)
 	@ARG=$$(seq -500 500 | shuf | head -n 500); \
 	echo "Testing with:" $$ARG; \
-	./$(NAME) $$ARG > moves.txt; \
+	./$(NAME) $$ARG | tee moves.txt; \
 	echo "Moves saved to moves.txt"
 
 test10: $(NAME)
 	@ARG=$$(seq -500 500 | shuf | head -n 10); \
 	echo "Testing with:" $$ARG; \
-	./$(NAME) $$ARG > moves.txt; \
+	./$(NAME) $$ARG | tee moves.txt; \
 	echo "Moves saved to moves.txt"
 
 

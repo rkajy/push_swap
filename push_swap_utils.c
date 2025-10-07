@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:50 by radandri          #+#    #+#             */
-/*   Updated: 2025/09/30 05:16:47 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/07 23:27:50 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,38 +70,78 @@ void	free_split(char **split)
 	free(split);
 }
 
-static int cmp_int(const void *a, const void *b)
+void	freeList(t_stack *s)
 {
-	return (*(int *)a - *(int *)b);
+	t_node	*curr;
+	t_node	*next;
+
+	if (!s || !s->sentinel)
+		return ;
+	curr = s->sentinel->next;
+	while (curr != s->sentinel)
+	{
+		next = curr->next;
+		free(curr);
+		curr = next;
+	}
+	free(s->sentinel);
+	s->sentinel = NULL;
+	s->size = 0;
+	s->min = NULL;
+	s->max = NULL;
+	s->median = NULL;
 }
 
-void normalize_node_values(t_stack *s)
-{
-	int *arr;
-	int i;
-	t_node *curr;
+// static t_node	*get_min_node(t_stack *s)
+// {
+// 	t_node	*curr;
+// 	t_node	*min;
 
-	if(!s || !s->size)
-		return;
-	arr = malloc(sizeof(int) * s->size);
-	if(!arr)
-		return;
+// 	curr = s->sentinel->next;
+// 	min = curr;
+// 	while (curr != s->sentinel)
+// 	{
+// 		if (curr->data < min->data)
+// 			min = curr;
+// 		curr = curr->next;
+// 	}
+// 	return (min);
+// }
+
+static int cmp_data(const void *a, const void *b)
+{
+	const t_pair *pa = (const t_pair *)a;
+	const t_pair *pb = (const t_pair *)b;
+
+	return (pa->data - pb->data);
+}
+
+void	normalize_node_values(t_stack *s)
+{
+	t_pair tab[s->size];
+	t_node *curr;
+	int i;
+	t_pair temp;
+
+	if(!s || !s->sentinel)
+		return ;
 	curr = s->sentinel->next;
 	i = 0;
-	while( curr != s->sentinel)
+	temp.data = 0;
+	while (curr != s->sentinel)
 	{
-		arr[i++] = curr->data;
+		temp.data = curr->data;
+		tab[i++] = temp;
 		curr = curr->next;
 	}
-	qsort(arr, s->size, sizeof(int), cmp_int);
-	curr = s->sentinel->next;
-	while(curr != s->sentinel)
+	qsort(tab, s->size, sizeof(t_pair), cmp_data);	
+	i = 0;
+	curr = NULL;
+	while (i < s->size)
 	{
-		i = 0;
-		while(i < s->size && arr[i] != curr->data)
-			i++;
-		curr->index = i;
-		curr = curr->next;
+		curr = searchNode(s, tab[i].data);
+		if(curr)
+			curr->rank = i++;
 	}
-	free(arr);
 }
+

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/05 21:03:04 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/07 22:59:58 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,12 @@ typedef struct s_doubly_linked_list
 	t_node	*median;
 }			t_stack;
 
+	typedef struct s_pair
+	{
+		int data;
+		int rank;
+	} t_pair;
+
 // linked list
 void		printList(t_stack *s);
 void		initList(t_stack *s);
@@ -67,6 +73,9 @@ t_node		*deleteFirst(t_stack *s);
 t_node		*deleteLast(t_stack* s);
 void		insertNodeInHead(t_stack *stack, t_node *node);
 void		insertNodeInTail(t_stack *s, t_node *node);
+void		deleteNode(t_stack *s, t_node* node);
+void		freeList(t_stack *s);
+t_node *searchNode(t_stack* s, int x);
 
 // parsing
 int			is_valid_token(char *s);
