@@ -69,3 +69,39 @@ void	free_split(char **split)
 	}
 	free(split);
 }
+
+static int cmp_int(const void *a, const void *b)
+{
+	return (*(int *)a - *(int *)b);
+}
+
+void normalize_node_values(t_stack *s)
+{
+	int *arr;
+	int i;
+	t_node *curr;
+
+	if(!s || !s->size)
+		return;
+	arr = malloc(sizeof(int) * s->size);
+	if(!arr)
+		return;
+	curr = s->sentinel->next;
+	i = 0;
+	while( curr != s->sentinel)
+	{
+		arr[i++] = curr->data;
+		curr = curr->next;
+	}
+	qsort(arr, s->size, sizeof(int), cmp_int);
+	curr = s->sentinel->next;
+	while(curr != s->sentinel)
+	{
+		i = 0;
+		while(i < s->size && arr[i] != curr->data)
+			i++;
+		curr->index = i;
+		curr = curr->next;
+	}
+	free(arr);
+}

@@ -54,6 +54,25 @@ valgrind: $(NAME)
 viz:
 	echo "wip"
 
+test100: $(NAME)
+	@ARG=$$(seq -500 500 | shuf | head -n 100); \
+	echo "Testing with:" $$ARG; \
+	./$(NAME) $$ARG > moves.txt; \
+	echo "Moves saved to moves.txt"
+
+test500: $(NAME)
+	@ARG=$$(seq -500 500 | shuf | head -n 500); \
+	echo "Testing with:" $$ARG; \
+	./$(NAME) $$ARG > moves.txt; \
+	echo "Moves saved to moves.txt"
+
+test10: $(NAME)
+	@ARG=$$(seq -500 500 | shuf | head -n 10); \
+	echo "Testing with:" $$ARG; \
+	./$(NAME) $$ARG > moves.txt; \
+	echo "Moves saved to moves.txt"
+
+
 re: fclean all
 
 .PHONY: all fclean clean re valgrind

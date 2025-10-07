@@ -37,9 +37,9 @@
  */
 typedef struct s_dlklist
 {
-	int data;               /**< Raw integer value stored in node */
-	int index;              /**< Compressed index (rank in sorted order) */
-	int pos;                /**< Current position in the stack */
+	int data;               /**< Valeur brute */
+	int index;              /**< Index dans la pile (position courante) */
+	int rank;                /**< Rang normalisé (position triée), rank compris ente 0 et size-1 */
 	int target_pos;         /**< Target position in the other stack */
 	int cost_a;             /**< Rotation cost on stack A */
 	int cost_b;             /**< Rotation cost on stack B */
@@ -59,12 +59,12 @@ typedef struct s_doubly_linked_list
 // linked list
 void		printList(t_stack *s);
 void		initList(t_stack *s);
-t_stack	*create_stack(void);
+t_stack		*create_stack(void);
 void		updateIndexes(t_stack *s);
 t_node		*insertInTail_checked(t_stack *s, int data);
 t_node		*insertInHead(t_stack *stack, int data);
 t_node		*deleteFirst(t_stack *s);
-t_node *deleteLast(t_stack* s);
+t_node		*deleteLast(t_stack* s);
 void		insertNodeInHead(t_stack *stack, t_node *node);
 void		insertNodeInTail(t_stack *s, t_node *node);
 
@@ -80,6 +80,7 @@ int			is_space(char c);
 long		ft_atol(const char *str);
 void		free_split(char **split);
 void		swapFirst2(t_stack *stack);
+void normalize_node_values(t_stack *s);
 
 // move a
 void		swap_a(t_stack *stack_a);

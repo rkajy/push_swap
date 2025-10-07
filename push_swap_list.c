@@ -25,7 +25,7 @@ void printList(t_stack *s)
     {
         if (!first)
             ft_printf(",");
-        ft_printf("%d", curr->data);
+        ft_printf("%d (rank = %d)", curr->data, curr->rank);
         first = 0;
         curr = curr->next;
     }
@@ -231,8 +231,8 @@ static void swap_adjacent_nodes(t_node *n1, t_node *n2)
     prev->next = n2;
     next->prev = n1;
 
-    n1->pos++;
-    n1->pos--;
+    n1->index++;
+    n1->index--;
 }
 
 void swapFirst2(t_stack *stack)
