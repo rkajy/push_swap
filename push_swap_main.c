@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:38:10 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/07 23:08:06 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/08 00:47:43 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int main(int argc, char* argv[])
         ft_printf("Error\n");
         return (1);
     }
-    
     a = parse_numbers_to_stack(args);
     if(!a)
     {
@@ -36,15 +35,10 @@ int main(int argc, char* argv[])
         return (1);        
     }
     b = create_stack();
-    // ft_printf("size = %d\n", a->size);
-    // while (a->size != 3)
-    // {
-    //     push_b(a,b);
-    // }
-    ft_printf("a:\n");
     normalize_node_values(a);
-    printList(a);
-    // ft_printf("b:\n");
-     printList(b);
+    pushToBKsort(a, b);
+    pushBackToA(a, b);
+    freeList(a);
+    freeList(b);
     return (0);
 }

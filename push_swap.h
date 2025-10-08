@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/07 22:59:58 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/08 02:48:05 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ typedef struct s_doubly_linked_list
 void		printList(t_stack *s);
 void		initList(t_stack *s);
 t_stack		*create_stack(void);
-void		updateIndexes(t_stack *s);
+void		updateStack(t_stack *s);
 t_node		*insertInTail_checked(t_stack *s, int data);
 t_node		*insertInHead(t_stack *stack, int data);
 t_node		*deleteFirst(t_stack *s);
@@ -89,7 +89,11 @@ int			is_space(char c);
 long		ft_atol(const char *str);
 void		free_split(char **split);
 void		swapFirst2(t_stack *stack);
-void normalize_node_values(t_stack *s);
+void 		normalize_node_values(t_stack *s);
+
+// k-sort
+void    pushToBKsort(t_stack *a, t_stack *b);
+void 	pushBackToA(t_stack *a, t_stack *b);
 
 // move a
 void		swap_a(t_stack *stack_a);

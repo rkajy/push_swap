@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/10/07 17:34:00 by radandri         ###   ########.fr        #
+#    Updated: 2025/10/08 03:55:26 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = push_swap_list.c \
 		push_swap_move_a.c \
 		push_swap_move_b.c \
 		push_swap_move_both.c \
+		push_swap_k_sort.c \
 
 OBJS = $(SRCS:.c=.o)
 
@@ -57,13 +58,13 @@ viz:
 test100: $(NAME)
 	@ARG=$$(seq -500 500 | shuf | head -n 100); \
 	echo "Testing with:" $$ARG; \
-	./$(NAME) $$ARG | tee moves.txt; \
+	./$(NAME) $$ARG > moves.txt; \
 	echo "Moves saved to moves.txt"
 
 test500: $(NAME)
 	@ARG=$$(seq -500 500 | shuf | head -n 500); \
 	echo "Testing with:" $$ARG; \
-	./$(NAME) $$ARG | tee moves.txt; \
+	./$(NAME) $$ARG > moves.txt; \
 	echo "Moves saved to moves.txt"
 
 test10: $(NAME)
