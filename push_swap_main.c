@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:38:10 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/10 01:23:27 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 05:58:02 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ int	main(int argc, char *argv[])
 	a = parse_numbers_to_stack(args);
 	if (!a)
 		return (ft_printf("Error\n"), 1);
+	if(is_sorted_stack(a))
+		return 0;
 	b = create_list();
 	normalize_node_values(a);
 	radix_sort(a, b);

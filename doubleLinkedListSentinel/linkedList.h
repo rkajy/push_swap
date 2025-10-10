@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 05:08:06 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/09 23:21:12 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 07:19:21 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,7 @@
 # define LINKEDLIST_H
 
 # include <stdlib.h>
-/**
- * @struct s_node
- * @brief Represents a node in a doubly linked stack used in push_swap.
- *
- * Each node stores the original integer value, its compressed index
- * (rank in sorted order), and additional attributes to compute the
- * optimal moves between two stacks (stack A and B).
- *
- * Example usage:
- * @code
- * t_node *n = malloc(sizeof(t_node));
- * n->data = 42;        // raw value
- * n->index = 3;        // 4th smallest element
- * n->pos = 0;          // top of the stack
- * n->target_pos = 2;   // must be placed at position 2 in stack A
- * n->cost_a = 1;       // one rotation needed on stack A
- * n->cost_b = -2;      // two reverse rotations on stack B
- * @endcode
- */
+
 typedef struct s_dlklist
 {
 	int					data;

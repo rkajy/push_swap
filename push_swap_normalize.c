@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 23:55:43 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/10 02:17:28 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 07:14:01 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,66 +20,31 @@ static int	cmp_data(const void *a, const void *b)
 	return (pa->data - pb->data);
 }
 
-// static void	fill_tab(t_stack *s, t_pair *tab)
-// {
-// 	t_node	*curr;
-// 	int		i;
-
-// 	curr = s->sentinel->next;
-// 	i = 0;
-// 	while (curr != s->sentinel)
-// 	{
-// 		tab[i++].data = curr->data;
-// 		curr = curr->next;
-// 	}
-// }
-
-// void	normalize_node_values(t_stack *s)
-// {
-// 	t_pair	*tab;
-// 	t_node	*curr;
-// 	int		i;
-
-// 	if (!s || !s->sentinel)
-// 		return ;
-// 	tab = malloc(sizeof(t_pair) * s->size);
-// 	if (!tab)
-// 		return ;
-// 	fill_tab(s, tab);
-// 	qsort(tab, s->size, sizeof(t_pair), cmp_data);
-// 	i = -1;
-// 	while (++i < s->size)
-// 		curr = search_node_val(s, tab[i].data);
-// 	if (curr)
-// 		curr->rank = i;
-// 	free(tab);
-// }
-
 void	normalize_node_values(t_stack *s)
 {
-	t_pair	tab[s->size];
+	t_pair	*tab;
 	t_node	*curr;
 	int		i;
-	t_pair	temp;
 
 	if (!s || !s->sentinel)
 		return ;
+	tab = ft_calloc(sizeof(t_pair), s->size);
+	if (!tab)
+		return ;
 	curr = s->sentinel->next;
 	i = 0;
-	temp.data = 0;
 	while (curr != s->sentinel)
 	{
-		temp.data = curr->data;
-		tab[i++] = temp;
+		tab[i++].data = curr->data;
 		curr = curr->next;
 	}
 	qsort(tab, s->size, sizeof(t_pair), cmp_data);
 	i = 0;
-	curr = NULL;
 	while (i < s->size)
 	{
 		curr = search_node_val(s, tab[i].data);
 		if (curr)
 			curr->rank = i++;
 	}
+	free(tab);
 }

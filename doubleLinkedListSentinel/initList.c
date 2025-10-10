@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/09 05:31:18 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/09 23:06:47 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 07:20:25 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,10 @@ void	init_list(t_stack *s)
 		return ;
 	s->sentinel->data = -1;
 	s->sentinel->index = -1;
+	s->sentinel->rank = -1;
+	s->sentinel->target_pos = -1;
+	s->sentinel->cost_a = -1;
+	s->sentinel->cost_b = -1;
 	s->sentinel->next = s->sentinel;
 	s->sentinel->prev = s->sentinel;
 	s->size = 0;

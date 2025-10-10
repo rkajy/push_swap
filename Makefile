@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/10/10 02:02:35 by radandri         ###   ########.fr        #
+#    Updated: 2025/10/10 07:45:14 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,14 +63,14 @@ clean:
 fclean: clean
 	rm -f $(NAME)
 	$(MAKE) -C $(LIBFT_PRINTF_DIR) fclean
-	$(MAKE) -C $(LIST_DIR)
+	$(MAKE) -C $(LIST_DIR) fclean
 
 valgrind: $(NAME)
-	valgrind $(VALGRIND_ARGS) ./$(NAME)
+	@ARG=$$(seq -500 500 | shuf | head -n 10); \
+	valgrind $(VALGRIND_ARGS) ./$(NAME) $$ARG \
 
 viz: $(NAME)
 	echo "clone vizualizer"; \
-	rm -rf push_swap_visualizer; \
 	git clone https://github.com/o-reo/push_swap_visualizer; \
 	cd push_swap_visualizer; \
 	mkdir build; \

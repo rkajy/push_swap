@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:50 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/10 00:22:09 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 07:37:11 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ void	free_list(t_stack *s)
 	s->min = NULL;
 	s->max = NULL;
 	s->median = NULL;
+	free(s);
 }
 
 /**
