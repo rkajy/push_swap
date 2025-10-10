@@ -6,56 +6,11 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:27 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/02 01:09:03 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 01:07:09 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-/**
- * Checks if the given string token is valid according to specific criteria.
- *
-
-	* A valid token is a non-empty string representing a signed or unsigned integer,
- * with an optional '+' or '-' at the beginning, followed by digits only.
- *
- * Example:
- *   is_valid_token("42")      -> 1
- *   is_valid_token("-123")    -> 1
- *   is_valid_token("+0")      -> 1
- *   is_valid_token("abc")     -> 0
- *   is_valid_token("")        -> 0
- *   is_valid_token("+")       -> 0
- *
- * @param s Pointer to the string token to validate.
- * @return 1 if the token is valid, 0 otherwise.
- */
-int	is_valid_token(char *s)
-{
-	int	i;
-
-	if (!s || !s[0])
-		return (0);
-	i = 0;
-	if (s[i] == '+' || s[i] == '-')
-	{
-		/* sign alone is invalid */
-		if (!s[i + 1])
-			return (0);
-		i++;
-	}
-	/* reject leading zero followed by other digits (ex: "03", "000") */
-	if (s[i] == '0' && s[i + 1])
-		return (0);
-	/* all remaining chars must be digits */
-	while (s[i])
-	{
-		if (!ft_isdigit(s[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
 
 static char	*append_with_space(char *s1, char *s2)
 {
@@ -179,7 +134,7 @@ t_stack	*parse_numbers_to_stack(char *str)
 	list = malloc(sizeof(t_stack));
 	if (!list)
 		return (NULL);
-	initList(list);
+	init_list(list);
 	split = ft_split(str, ' ');
 	if (!split)
 		return (free(list), NULL);
@@ -191,7 +146,7 @@ t_stack	*parse_numbers_to_stack(char *str)
 		num = ft_atol(split[i]);
 		if (num > INT_MAX || num < INT_MIN)
 			return (free_split(split), free(list), NULL);
-		if (!insertInTail_checked(list, (int)num))
+		if (!insert_int_in_tail_checked(list, (int)num))
 			return (free_split(split), free(list), NULL);
 	}
 	free_split(split);

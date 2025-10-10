@@ -6,22 +6,12 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:50 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/07 23:27:50 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 00:22:09 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/**
- * Checks if the given character is a whitespace character.
- *
- * Returns non-zero if `c` is a whitespace character: tab (9), line feed (10),
- * vertical tab (11), form feed (12), carriage return (13), or space (32).
- * Otherwise, returns 0.
- *
- * @param c The character to check.
- * @return Non-zero if `c` is a whitespace character, 0 otherwise.
- */
 int	is_space(char c)
 {
 	return (c == 9 || c == 10 || c == 11 || c == 12 || c == 13 || c == 32);
@@ -46,7 +36,6 @@ long	ft_atol(const char *str)
 	}
 	while (str[i])
 	{
-		// printf("current = %c, val =%d\n", str[i], (str[i]) - '0');
 		temp = (str[i] - '0');
 		res += temp;
 		res *= 10;
@@ -58,7 +47,7 @@ long	ft_atol(const char *str)
 
 void	free_split(char **split)
 {
-	int i;
+	int	i;
 
 	if (!split)
 		return ;
@@ -70,7 +59,7 @@ void	free_split(char **split)
 	free(split);
 }
 
-void	freeList(t_stack *s)
+void	free_list(t_stack *s)
 {
 	t_node	*curr;
 	t_node	*next;
@@ -92,56 +81,44 @@ void	freeList(t_stack *s)
 	s->median = NULL;
 }
 
-// static t_node	*get_min_node(t_stack *s)
-// {
-// 	t_node	*curr;
-// 	t_node	*min;
+/**
+ * Checks if the given string token is valid according to specific criteria.
+ *
 
-// 	curr = s->sentinel->next;
-// 	min = curr;
-// 	while (curr != s->sentinel)
-// 	{
-// 		if (curr->data < min->data)
-// 			min = curr;
-// 		curr = curr->next;
-// 	}
-// 	return (min);
-// }
-
-static int cmp_data(const void *a, const void *b)
+	* A valid token is a non-empty string representing a signed or unsigned integer,
+ * with an optional '+' or '-' at the beginning, followed by digits only.
+ *
+ * Example:
+ *   is_valid_token("42")      -> 1
+ *   is_valid_token("-123")    -> 1
+ *   is_valid_token("+0")      -> 1
+ *   is_valid_token("abc")     -> 0
+ *   is_valid_token("")        -> 0
+ *   is_valid_token("+")       -> 0
+ *
+ * @param s Pointer to the string token to validate.
+ * @return 1 if the token is valid, 0 otherwise.
+ */
+int	is_valid_token(char *s)
 {
-	const t_pair *pa = (const t_pair *)a;
-	const t_pair *pb = (const t_pair *)b;
+	int	i;
 
-	return (pa->data - pb->data);
-}
-
-void	normalize_node_values(t_stack *s)
-{
-	t_pair tab[s->size];
-	t_node *curr;
-	int i;
-	t_pair temp;
-
-	if(!s || !s->sentinel)
-		return ;
-	curr = s->sentinel->next;
+	if (!s || !s[0])
+		return (0);
 	i = 0;
-	temp.data = 0;
-	while (curr != s->sentinel)
+	if (s[i] == '+' || s[i] == '-')
 	{
-		temp.data = curr->data;
-		tab[i++] = temp;
-		curr = curr->next;
+		if (!s[i + 1])
+			return (0);
+		i++;
 	}
-	qsort(tab, s->size, sizeof(t_pair), cmp_data);	
-	i = 0;
-	curr = NULL;
-	while (i < s->size)
+	if (s[i] == '0' && s[i + 1])
+		return (0);
+	while (s[i])
 	{
-		curr = searchNode(s, tab[i].data);
-		if(curr)
-			curr->rank = i++;
+		if (!ft_isdigit(s[i]))
+			return (0);
+		i++;
 	}
+	return (1);
 }
-

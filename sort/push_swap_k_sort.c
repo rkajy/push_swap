@@ -6,62 +6,61 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/07 23:56:50 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/08 03:19:26 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/10 01:18:09 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
+
 static int	ft_sqrt(int nb)
 {
-    int root;
+	int	root;
 
-    if (nb <= 0)
-        return 0;
-    if (nb == 1)
-        return 1;
-    
-    root = 1;
-    while (root <= nb / 2)
-    {
-        if (root * root == nb)
-            return root;
-        root++;
-    }
-    return 0; // nb n'est pas un carré parfait
+	if (nb <= 0)
+		return (0);
+	if (nb == 1)
+		return (1);
+	root = 1;
+	while (root <= nb / 2)
+	{
+		if (root * root == nb)
+			return (root);
+		root++;
+	}
+	return (0);
 }
 
-static int getDecisionMedian(int size)
+static int	get_decision_median(int size)
 {
-    double k;
+	double	k;
 
-    k = 1.3 * ft_sqrt((double)size);
-    if(k < 1)
-        k = 1;
-    return ((int)k);
+	k = 1.3 * ft_sqrt((double)size);
+	if (k < 1)
+		k = 1;
+	return ((int)k);
 }
 
-void    pushToBKsort(t_stack *a, t_stack *b)
+void	push_to_b_k_sort(t_stack *a, t_stack *b)
 {
-    int median;
+	int	median;
 
-    if(!a || !b || a->size == 0)
-        return;
-    median = getDecisionMedian(a->size);
-    while (a->size > 0)
-    {
-        if(a->sentinel->next->rank <= b->size)
-        {
-            push_b(a, b);
-            rotate_b(b);
-            
-        }
-        else if(a->sentinel->next->rank <= b->size + median)
-        {
-            push_b(a, b);
-        }
-        else
-            rotate_a(a);
-    }
+	if (!a || !b || a->size == 0)
+		return ;
+	median = get_decision_median(a->size);
+	while (a->size > 0)
+	{
+		if (a->sentinel->next->rank <= b->size)
+		{
+			push_b(a, b);
+			rotate_b(b);
+		}
+		else if (a->sentinel->next->rank <= b->size + median)
+		{
+			push_b(a, b);
+		}
+		else
+			rotate_a(a);
+	}
 }
 
 static int	find_max_rank_pos(t_stack *b)
@@ -88,7 +87,7 @@ static int	find_max_rank_pos(t_stack *b)
 	return (pos);
 }
 
-void pushBackToA(t_stack *a, t_stack *b)
+void	push_back_to_a(t_stack *a, t_stack *b)
 {
 	int	pos;
 
