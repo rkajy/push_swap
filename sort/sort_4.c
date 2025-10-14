@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:00:19 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/14 01:32:26 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/14 03:42:26 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 void	sort_4(t_stack *a, t_stack *b)
 {
-	t_node	*head;
-
 	update_list(a);
-	head = a->sentinel;
-	while (head->index != a->min->index)
+	while (a->sentinel->next->index != a->min->index)
 	{
 		if (a->min->index <= a->size / 2)
 			rotate_a(a);
-		else if (a->min->index > a->size / 2)
+		else
 			reverse_rotate_a(a);
+		update_list(a);
 	}
 	push_b(a, b);
+	update_list(a);
 	sort_3(a);
 	push_a(a, b);
+	update_list(a);
 }

@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 21:00:22 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/14 01:32:31 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/14 03:43:08 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	sort_5(t_stack *a, t_stack *b)
 		else
 			reverse_rotate_a(a);
 	}
+	push_b(a, b);
 	sort_3(a);
 	push_a(a, b);
 	push_a(a, b);
