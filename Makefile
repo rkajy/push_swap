@@ -6,7 +6,7 @@
 #    By: radandri <radandri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/05 15:34:36 by radandri          #+#    #+#              #
-#    Updated: 2025/10/10 07:45:14 by radandri         ###   ########.fr        #
+#    Updated: 2025/10/14 03:12:54 by radandri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,9 @@ SRCS = moves/push_a.c \
 		sort/push_swap_radix.c \
 		push_swap_normalize.c \
 		push_swap_main.c \
+		sort/sort_3.c \
+		sort/sort_4.c \
+		sort/sort_5.c \
 
 OBJS = $(SRCS:.c=.o)
 

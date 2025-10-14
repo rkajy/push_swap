@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/05 15:38:10 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/11 15:57:08 by radandri         ###   ########.fr       */
+/*   Created: 2025/10/14 03:15:15 by radandri          #+#    #+#             */
+/*   Updated: 2025/10/14 03:15:42 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,27 +41,38 @@
 // 	return (0);
 // }
 
+void	solve(t_stack *a, t_stack *b)
+{
+	if (a->size == 3)
+		sort_3(a);
+	else if (a->size == 4)
+		sort_4(a, b);
+	else if (a->size == 5)
+		sort_5(a, b);
+	else
+		radix_sort(a, b);
+}
+
 int	main(int argc, char *argv[])
 {
 	char	*args;
 	t_stack	*a;
 	t_stack	*b;
 
-	if (argc == 1 || (argc == 2 && !argv[1][0]))
+	if (argc == 1)
 		return (0);
+	if (argc == 2 && !argv[1][0])
+		return (write(2, "Error\n", 6), 1);
 	args = ft_join_args(argc, argv);
 	if (!args)
-		return (ft_printf("Error\n"), 1);
+		return (write(2, "Error\n", 6), 1);
 	a = parse_numbers_to_stack(args);
 	if (!a)
-		return (ft_printf("Error\n"), 1);
+		return (write(2, "Error\n", 6), 1);
 	if (is_sorted_stack(a))
 		return (0);
 	b = create_list();
 	normalize_node_values(a);
-	radix_sort(a, b);
-	free_list(a);
-	free_list(b);
-	free(args);
-	return (0);
+	solve(a, b);
+	return (free_list(a), free_list(b), free(args), 0);
 }

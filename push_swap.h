@@ -6,15 +6,15 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:37:39 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/10 01:22:59 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/14 01:04:47 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include "libft_printf/ft_printf.h"
 # include "doubleLinkedListSentinel/linkedList.h"
+# include "libft_printf/ft_printf.h"
 # include <limits.h>
 
 typedef struct s_pair
@@ -36,6 +36,10 @@ void	free_split(char **split);
 void	swap_first2_nodes(t_stack *stack);
 void	normalize_node_values(t_stack *s);
 void	free_list(t_stack *s);
+
+void	sort_3(t_stack *s);
+void	sort_4(t_stack *a, t_stack *b);
+void	sort_5(t_stack *a, t_stack *b);
 
 // k-sort
 void	push_to_b_k_sort(t_stack *a, t_stack *b);
