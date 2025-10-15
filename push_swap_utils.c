@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:50 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/10 07:37:11 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/15 02:36:36 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,10 @@ long	ft_atol(const char *str)
 	long	res;
 	int		i;
 	int		sign;
-	int		temp;
 
 	res = 0;
 	i = 0;
 	sign = 1;
-	temp = 0;
 	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
@@ -36,12 +34,9 @@ long	ft_atol(const char *str)
 	}
 	while (str[i])
 	{
-		temp = (str[i] - '0');
-		res += temp;
-		res *= 10;
+		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	res /= 10;
 	return (res * sign);
 }
 
@@ -85,14 +80,16 @@ void	free_list(t_stack *s)
 /**
  * Checks if the given string token is valid according to specific criteria.
  *
-
-	* A valid token is a non-empty string representing a signed or unsigned integer,
+ * A valid token is a non-empty string representing a signed or unsigned integer
  * with an optional '+' or '-' at the beginning, followed by digits only.
+ * Leading zeros are allowed (e.g., "01", "007").
  *
  * Example:
  *   is_valid_token("42")      -> 1
  *   is_valid_token("-123")    -> 1
  *   is_valid_token("+0")      -> 1
+ *   is_valid_token("01")      -> 1  (leading zeros allowed)
+ *   is_valid_token("007")     -> 1  (leading zeros allowed)
  *   is_valid_token("abc")     -> 0
  *   is_valid_token("")        -> 0
  *   is_valid_token("+")       -> 0
@@ -113,8 +110,6 @@ int	is_valid_token(char *s)
 			return (0);
 		i++;
 	}
-	if (s[i] == '0' && s[i + 1])
-		return (0);
 	while (s[i])
 	{
 		if (!ft_isdigit(s[i]))
