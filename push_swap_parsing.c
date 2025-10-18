@@ -6,7 +6,7 @@
 /*   By: radandri <radandri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/05 15:35:27 by radandri          #+#    #+#             */
-/*   Updated: 2025/10/15 02:31:37 by radandri         ###   ########.fr       */
+/*   Updated: 2025/10/18 20:49:46 by radandri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,17 +137,17 @@ t_stack	*parse_numbers_to_stack(char *str)
 	init_list(list);
 	split = ft_split(str, ' ');
 	if (!split)
-		return (free(list), NULL);
+		return (free_list(list), NULL);
 	i = -1;
 	while (split[++i])
 	{
 		if (!is_valid_token(split[i]))
-			return (free_split(split), free(list), NULL);
+			return (free_split(split), free_list(list), NULL);
 		num = ft_atol(split[i]);
 		if (num > INT_MAX || num < INT_MIN)
-			return (free_split(split), free(list), NULL);
+			return (free_split(split), free_list(list), NULL);
 		if (!insert_int_in_tail_checked(list, (int)num))
-			return (free_split(split), free(list), NULL);
+			return (free_split(split), free_list(list), NULL);
 	}
 	free_split(split);
 	return (list);
